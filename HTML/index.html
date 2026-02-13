@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Gift</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            width: 420px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1,
+        h2 {
+            color: #e91e63;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #yesBtn {
+            background: #e91e63;
+            color: white;
+        }
+
+        #noBtn {
+            background: #f8bbd0;
+            position: absolute;
+        }
+
+        .love-card {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #ffe4ec;
+            color: #e91e63;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes pop {
+            from {
+                transform: rotate(-45deg) scale(0);
+            }
+
+            to {
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        /* 💕 Falling hearts */
+        .falling-heart {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            color: #ff4d6d;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Valentine's Day Gift</h1>
+
+        <p><b>Hey love,</b><br> If I had a chance to live 1000 years, I would always choose you. I don't know how to
+            show my love for you or what gift I could give you this Valentine's Day. For us, not only today is
+            Valentine's Day every day feels like Valentine's Day. I only know coding, so I tried to surprise you by
+            creating this application. I hope you like it. I didn't spend any money on this, but I put in my effort and
+            time to make it special for you. <b>Happy Valentine's Day, my forever Valentine. I love you so much. ❤️</b>
+
+        <h2>Will you be my Valentine?</h2>
+
+        <button id="yesBtn" onclick="yesClicked()">Yes</button>
+        <button id="noBtn" onmouseover="moveNoButton()">No</button>
+
+        <div id="loveCard" class="love-card">
+            <h2>Yayyy! ❤️</h2>
+            <p>
+                You said YES!<br>
+                You just made me the happiest person alive.<br>
+                I love you forever 💖
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function moveNoButton() {
+            const btn = document.getElementById("noBtn");
+            btn.style.left = Math.random() * 300 + "px";
+            btn.style.top = Math.random() * 200 + "px";
+        }
+
+               function yesClicked() {
+            document.getElementById("loveCard").style.display = "block";
+            createHearts();
+        }
+       
+
+        function createHearts() {
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement("div");
+                heart.className = "falling-heart";
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
