@@ -57,6 +57,8 @@
         #noBtn {
             background: #f8bbd0;
             position: absolute;
+            transition: all 0.08s linear;
+            /* speed here */
         }
 
         .love-card {
@@ -112,7 +114,9 @@
         <h2>Will you be my Valentine?</h2>
 
         <button id="yesBtn" onclick="yesClicked()">Yes</button>
-        <button id="noBtn" onmouseover="moveNoButton()">No</button>
+        <button id="noBtn" onmouseover="moveNoButton()" ontouchstart="moveNoButton()">
+            No
+        </button>
 
         <div id="loveCard" class="love-card">
             <h2>Yayyy! ❤️</h2>
@@ -127,15 +131,19 @@
     <script>
         function moveNoButton() {
             const btn = document.getElementById("noBtn");
-            btn.style.left = Math.random() * 300 + "px";
-            btn.style.top = Math.random() * 200 + "px";
+
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 50;
+
+            btn.style.left = Math.random() * maxX + "px";
+            btn.style.top = Math.random() * maxY + "px";
         }
 
-               function yesClicked() {
+        function yesClicked() {
             document.getElementById("loveCard").style.display = "block";
             createHearts();
         }
-       
+
 
         function createHearts() {
             for (let i = 0; i < 25; i++) {
